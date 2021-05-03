@@ -1,6 +1,6 @@
 class MemoryGame {
 
-    srcs = [null, 'jenos.png', 'lian.png', 'dredge.png', 'maldamba']
+    srcs = [null, 'jenos.png', 'lian.png', 'dredge.png', 'maldamba.png']
 
     constructor () {
         this.container = document.querySelector('.container')
@@ -17,7 +17,9 @@ class MemoryGame {
 
     makeCardClickable(card) {
         card.addEventListener('click', (event) => {
-            card.src = 'images/' + this.srcs[card.id]
+            console.log('Clicked')
+            const cardId = Math.abs(card.id)
+            card.src = 'images/' + this.srcs[cardId]
         })
     }
 
@@ -47,4 +49,4 @@ class MemoryGame {
 
 const g = new MemoryGame()
 g.initCards()
-g.hideCardsIn(5000)
+g.hideCardsIn(1000)
