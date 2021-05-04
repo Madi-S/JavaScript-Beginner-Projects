@@ -1,3 +1,5 @@
+
+
 class MemoryGame {
 
     srcs = [null, 'jenos.png', 'lian.png', 'dredge.png', 'maldamba.png']
@@ -5,48 +7,74 @@ class MemoryGame {
     constructor () {
         this.container = document.querySelector('.container')
     }
-    check() {
 
-    }
-    win() {
-
-    }
-    lose() {
-
+    startNewGame() {
+        this.lastClickedImageId = null
+        this._shuffleImages()
+        this._showImagesFor(3000)
+        this._makeImagesClickable()
     }
 
-    makeCardClickable(card) {
-        card.addEventListener('click', (event) => {
-            console.log('Clicked')
-            const cardId = Math.abs(card.id)
-            card.src = 'images/' + this.srcs[cardId]
-        })
+    _makeImagesClickable() {
+        const images = this.container.querySelectorAll('img')
+        for (let img of images) {
+            img.addEventListener('click', () => {
+                console.log('Clicked')
+
+                const imgID = Math.abs(img.id)
+                const realImgSrc = 'images/' + this.srcs[imgID]
+                console.log(img.src, realImgSrc)
+
+                if (!img.src.includes(realImgSrc)) {
+                    img.src = realImgSrc
+                    this._checkWinLose(imgID)
+                }
+            })
+        }
     }
 
-    hideCardsIn(ms = 1000) {
+    _checkWinLose(imgID) {
+        if (!this.lastClickedImageId || this.lastClickedImageId == imgID) {
+                this.lastClickedImageId ? this.lastClickedImageId = null : this.lastClickedImageId = imgID
+            } else {
+                setTimeout(() => {
+                    alert('You have lost')
+                    this.startNewGame()
+                }, 500)
+
+            }
+    }
+
+    _showImagesFor(ms = 1000) {
+        const images = this.container.querySelectorAll('img')
+        for (let img of images) {
+            const imgID = Math.abs(img.id)
+            img.src =  'images/' + this.srcs[imgID]
+        }
         setTimeout(() => {
-            const imgs = this.container.querySelectorAll('img')
-            for (let img of imgs) {
+            for (let img of images) {
                 img.src = 'images/back.png'
-                this.makeCardClickable(img)
             }
         }, ms)
     }
 
-    initCards() {
-      this.container.innerHTML = `
-      <img id="1" src="images/jenos.png" class="img-fluid" height="180" width="300">
-      <img id="2" src="images/lian.png" class="img-fluid" height="180" width="300">
-      <img id="3" src="images/dredge.png" class="img-fluid" height="180" width="300">
-      <img id="4" src="images/maldamba.png" class="img-fluid" height="180" width="300">
-      <img id="-1" src="images/jenos.png" class="img-fluid" height="180" width="300">
-      <img id="-2" src="images/lian.png" class="img-fluid" height="180" width="300">
-      <img id="-3" src="images/dredge.png" class="img-fluid" height="180" width="300">
-      <img id="-4" src="images/maldamba.png" class="img-fluid" height="180" width="300">
-      `
+
+    _shuffleImages() {
+        let images = this.container.querySelectorAll('img')
+        this.container.innerHTML = ''
+
+        Array.from(images)
+            .sort(() => 0.5 - Math.random())
+            .forEach((img) => this.container.innerHTML += img.outerHTML)
     }
 }
 
+
 const g = new MemoryGame()
-g.initCards()
-g.hideCardsIn(1000)
+g.startNewGame()
+
+document.querySelector('#playButton')
+    .addEventListener('click', () => {
+        g.startNewGame()
+    })
+
