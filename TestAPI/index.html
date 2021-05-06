@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>
+        API tester
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="head" align="center">
+        <h1 align="center">Test your APIs</h1>
+        <button type="button" class="btn btn-primary btn-lg" id="sendRequestBtn">Test</button>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <textarea class="form-control" id="response" rows="5" placeholder="Server response will appear here …"></textarea>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <h5>URL</h5>
+        <input type="text" class="form-control" id="urlInput" placeholder="https://">
+        <br>
+
+        <h5>Select request method:</h5>
+        <select id="method" class="form-select" aria-label="Default select example">
+            <option value="get" selected>GET</option>
+            <option value="post">POST</option>
+            <option value="put">PUT</option>
+            <option value="patch">PATCH</option>
+            <option value="delete">DELETE</option>
+        </select>
+        <br>
+
+        <h5>Add key-value pairs data:</h5>
+        <div id="payload">
+            <label for="payload1" class="form-label">Key-Value pair #1</label>
+            <input type="text" class="form-control key" id="payload1" placeholder="Key">
+            <input type="text" class="form-control value" placeholder="Value">
+            <hr>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" id="addPayloadBtn">More +</button>
+    </div>
+
+    <script src="addInput.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
