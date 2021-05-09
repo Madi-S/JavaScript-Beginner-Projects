@@ -1,13 +1,16 @@
-import {questionInputIsValid} from './utils'
+import {createModal, questionInputIsValid} from './utils'
+import {Question} from './question'
 import './styles.css'
 
 console.log('App is running!')
 
+const modalBtn = document.getElementById('modalBtn')
 const form = document.getElementById('questionForm')
 const input = form.querySelector('#questionInput')
 const submitBtn = form.querySelector('#submitQuestionBtn')
 
-
+modalBtn.addEventListener('click', openModal)
+window.addEventListener('load', Question.renderList)
 form.addEventListener('submit', submitQuestionFormHandler)
 input.addEventListener('input', lockBtn)
 
@@ -29,10 +32,17 @@ function submitQuestionFormHandler(event) {
 
         // Async request to server to store user's question
         console.log('Question:', question)
+        Question.create(question).then(() => {
+            input.value = ''
+            input.className = ''
+            // submitBtn.disabled = false
+        })
 
-        input.value = ''
-        input.className = ''
-        // submitBtn.disabled = false
+
     }
 
+}
+
+function openModal() {
+    createModal('Authorization', '<h1>Test</h1>')
 }

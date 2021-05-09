@@ -10,55 +10,54 @@
 </head>
 
 <body>
-<div id="sidebar">
-    <div class="mui--text-white mui--text-display1 mui--align-vertical">
-        My Blog
-        <br>
-        <small class="author">by mshaiken</small>
-    </div>
-</div>
-<div id="content" class="mui-container-fluid">
-    <div class="mui-row">
-        <div class="mui-col-sm-10 mui-col-sm-offset-1">
+
+    <button class="mui-btn mui-btn--fab mui-btn--primary floating-btn" id="modalBtn">All</button>
+
+    <div id="sidebar">
+        <div class="mui--text-white mui--text-display1 mui--align-vertical">
+            My Blog
             <br>
-            <br>
-            <div class="mui--text-black-54 mui--text-body2">Ask Me a Question</div>
-            <div class="mui-divider"></div>
-            <br>
-
-            <!-- Ask a question form -->
-            <form class="mui-form" id="questionForm">
-                <div class="mui-textfield mui-textfield--float-label">
-                    <input type="text" id="questionInput" required minlength="10" maxlength="255">
-                    <label for="questionInput">What do you wanna know?</label>
-                </div>
-
-                <button
-                        id="submitQuestionBtn"
-                        type="submit"
-                        class="mui-btn mui-btn--raised mui-btn--primary"
-                        disabled
-                >
-                Submit
-                </button>
-            </form>
-
-
-            <br>
-            <br>
-            <div class="mui--text-black-54 mui--text-body2">Your Questions</div>
-            <div class="mui-divider"></div>
-            <br>
-
-            <div id="list">
-
-            </div>
-
-            <div class="mui--text-headline">MUI Acquires New Features</div>
-            <div class="mui--text-black-54">By <a href="#">Team MUI</a> 3 weeks ago</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis aliquam ipsum sed dignissim. Sed ac accumsan odio. Vivamus tristique dignissim neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc cursus felis nec purus condimentum vestibulum. Donec mauris nisi, sollicitudin eget iaculis id, suscipit id odio. <a href="#">Read more...</a></div>
+            <small class="author">by mshaiken</small>
         </div>
     </div>
-</div>
+
+    <div id="content" class="mui-container-fluid">
+        <div class="mui-row">
+            <div class="mui-col-sm-10 mui-col-sm-offset-1">
+                <br>
+                <br>
+                <div class="mui--text-black-54 mui--text-body2">Ask Me a Question</div>
+                <div class="mui-divider"></div>
+                <br>
+
+                <!-- Ask a question form -->
+                <form class="mui-form" id="questionForm">
+                    <div class="mui-textfield mui-textfield--float-label">
+                        <input type="text" id="questionInput" required minlength="10" maxlength="255">
+                        <label for="questionInput">What do you wanna know?</label>
+                    </div>
+
+                    <button
+                            id="submitQuestionBtn"
+                            type="submit"
+                            class="mui-btn mui-btn--raised mui-btn--primary"
+                            disabled
+                    >
+                    Submit
+                    </button>
+                </form>
+
+                <br>
+                <br>
+
+                <div class="mui--text-black-54 mui--text-body2">Your Questions</div>
+                <div class="mui-divider"></div>
+                <div id="list">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>
