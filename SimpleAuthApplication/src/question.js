@@ -1,5 +1,5 @@
 export class Question {
-    
+
     static create(question) {
         return fetch('https://askme-app-9eff3-default-rtdb.firebaseio.com/questions.json', {
             method: 'POST',
@@ -29,7 +29,7 @@ export class Question {
     }
 
     static parseQuestions(response) {
-        if (response.error) return '<p class="error">You have no rights to visit this page</p>'
+        if (response && response.error) return '<p class="error">You have no rights to visit this page</p>'
 
         return response ? Object.keys(response).map(key => ({
             ...response[key],
@@ -44,6 +44,12 @@ export class Question {
             : '<div class="mui--text-headline">You have not asked any questions yet ;(</div>'
 
         document.getElementById('list').innerHTML = html
+    }
+
+    static questionListToHTML(questions) {
+        return questions.length
+            ? `<ol>${questions.map(q => `<li>${q.text} <p class="date">${q.date}</p></li>`).join('')}</ol>`
+            : '<p>There are no questions yet</p>'
     }
 }
 

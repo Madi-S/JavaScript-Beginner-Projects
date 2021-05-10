@@ -73,3 +73,12 @@ button {
 .modal .modal-content {
     padding: 1rem;
 }
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.date {
+    text-align: right;
+}

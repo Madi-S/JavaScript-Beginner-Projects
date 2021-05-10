@@ -49,22 +49,29 @@ function openModal() {
     createModal('Authorization', getAuthForm())
     document
         .getElementById('authForm')
-        .addEventListener('submit', authFormHandler, {once: true})
+        .addEventListener('submit', authFormHandler, ) // {once: true}
 }
 
 
 function authFormHandler(event) {
     event.preventDefault()
+
+    const btn = event.target.querySelector('button')
     const email = event.target.querySelector('#email').value
     const password = event.target.querySelector('#password').value
 
+    btn.disabled = true
     authWithEmailAndPassword(email, password)
         .then(Question.fetch)
         .then(renderModalAfterAuth)
+        .then(() => btn.disabled = false)
 }
 
 
 function renderModalAfterAuth(content) {
-    console.log(content)
-    return 55
+    if (typeof content == 'string') {
+        createModal('Authorization Error', content)
+    } else {
+        createModal('Questions List', Question.questionListToHTML(content))
+    }
 }
