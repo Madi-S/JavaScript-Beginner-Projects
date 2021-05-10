@@ -1,6 +1,7 @@
 import {createModal, questionInputIsValid} from './utils'
 import {Question} from './question'
 import './styles.css'
+import {authWithEmailAndPassword, getAuthForm} from "./auth";
 
 console.log('App is running!')
 
@@ -13,6 +14,7 @@ modalBtn.addEventListener('click', openModal)
 window.addEventListener('load', Question.renderList)
 form.addEventListener('submit', submitQuestionFormHandler)
 input.addEventListener('input', lockBtn)
+
 
 function lockBtn(event) {
     submitBtn.disabled = !questionInputIsValid(input.value)
@@ -40,9 +42,29 @@ function submitQuestionFormHandler(event) {
 
 
     }
-
 }
 
+
 function openModal() {
-    createModal('Authorization', '<h1>Test</h1>')
+    createModal('Authorization', getAuthForm())
+    document
+        .getElementById('authForm')
+        .addEventListener('submit', authFormHandler, {once: true})
+}
+
+
+function authFormHandler(event) {
+    event.preventDefault()
+    const email = event.target.querySelector('#email').value
+    const password = event.target.querySelector('#password').value
+
+    authWithEmailAndPassword(email, password)
+        .then(Question.fetch)
+        .then(renderModalAfterAuth)
+}
+
+
+function renderModalAfterAuth(content) {
+    console.log(content)
+    return 55
 }

@@ -1,4 +1,5 @@
 export class Question {
+    
     static create(question) {
         return fetch('https://askme-app-9eff3-default-rtdb.firebaseio.com/questions.json', {
             method: 'POST',
@@ -16,6 +17,24 @@ export class Question {
                 addToLocalStorage(question)
             })
             .then(Question.renderList)
+    }
+
+    static fetch(token) {
+        if (!token) {
+            return Promise.resolve('<p class="error">You have no rights to visit this page</p>')
+        }
+        return fetch(`https://askme-app-9eff3-default-rtdb.firebaseio.com/questions.json?auth=${token}`)
+            .then(response => response.json())
+            .then(Question.parseQuestions)
+    }
+
+    static parseQuestions(response) {
+        if (response.error) return '<p class="error">You have no rights to visit this page</p>'
+
+        return response ? Object.keys(response).map(key => ({
+            ...response[key],
+            id: key
+        })) : []
     }
 
     static renderList() {
