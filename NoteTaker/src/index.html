@@ -8,31 +8,44 @@
 </head>
 <body>
 <div id="sidebar">
-    <div class="mui--text-white mui--text-display1 mui--align-vertical">SAMPLE BLOG</div>
+    <div class="mui--text-white mui--text-display1 mui--align-vertical">REDDIT LITE</div>
 </div>
 <div id="content" class="mui-container-fluid">
     <div class="mui-row">
         <div class="mui-col-sm-10 mui-col-sm-offset-1">
             <br>
             <br>
-            <div class="mui--text-black-54 mui--text-body2">PINNED POST</div>
+            <div class="mui--text-black-54 mui--text-body2">ADD COMMENT</div>
             <div class="mui-divider"></div>
             <br>
-            <div class="mui--text-headline">MUI Acquires New Features</div>
-            <div class="mui--text-black-54">By <a href="#">Team MUI</a> 3 days ago</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis aliquam ipsum sed dignissim. Sed ac accumsan odio. Vivamus tristique dignissim neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc cursus felis nec purus condimentum vestibulum. Donec mauris nisi, sollicitudin eget iaculis id, suscipit id odio. <a href="#">Read more...</a></div>
+
+            <form class="mui-form" id="commentForm">
+                <div class="mui-textfield">
+                    <input id="username" type="text" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="mui-textfield mui-textfield--float-label">
+                    <textarea id="comment" required></textarea>
+                    <label for="comment">Comment</label>
+                </div>
+                <button class="mui-btn mui-btn--accent">Send</button>
+            </form>
+
             <br>
             <br>
-            <div class="mui--text-black-54 mui--text-body2">RECENT POSTS</div>
+            <div class="mui--text-black-54 mui--text-body2">RECENT COMMENTS</div>
             <div class="mui-divider"></div>
             <br>
-            <div class="mui--text-headline">MUI Acquires New Features</div>
-            <div class="mui--text-black-54">By <a href="#">Team MUI</a> 1 week ago</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis aliquam ipsum sed dignissim. Sed ac accumsan odio. Vivamus tristique dignissim neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc cursus felis nec purus condimentum vestibulum. Donec mauris nisi, sollicitudin eget iaculis id, suscipit id odio. <a href="#">Read more...</a></div>
-            <br>
-            <div class="mui--text-headline">MUI Acquires New Features</div>
-            <div class="mui--text-black-54">By <a href="#">Team MUI</a> 3 weeks ago</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis aliquam ipsum sed dignissim. Sed ac accumsan odio. Vivamus tristique dignissim neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc cursus felis nec purus condimentum vestibulum. Donec mauris nisi, sollicitudin eget iaculis id, suscipit id odio. <a href="#">Read more...</a></div>
+
+            <div id="comments">
+
+                <div class="mui--text-headline">Username</div>
+                <div class="mui--text-black-54">Date</div>
+                <div>Comment itself</div>
+                <br>
+
+            </div>
+
         </div>
     </div>
 </div>
