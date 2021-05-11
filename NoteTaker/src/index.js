@@ -1,1 +1,2 @@
-console.log('Test')
+import './style.css'
+import {Note} from './note'
