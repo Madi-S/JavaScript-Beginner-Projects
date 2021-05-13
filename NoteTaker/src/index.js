@@ -36,9 +36,9 @@ function sendAndUpdateNotes(event) {
 }
 
 function displayComments() {
-    Comment.getAll()
+    Comment.getNLastComments()
         .then(comments => {
-            console.log(comments)
+            console.log('in display',comments)
             const html = Comment.createHTML(comments)
             commentsSection.innerHTML = html
         })

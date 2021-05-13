@@ -17,17 +17,19 @@ export class Comment {
             })
     }
 
-    static getAll() {
+    static getNLastComments(n = 10) {
         return fetch(databaseURL)
             .then(response => response.json())
-    }
-
-    static delete(commentID) {
-
+            .then(commentsObj => {
+                const comments = Object.values(commentsObj)
+                console.log('ALl coments', comments)
+                console.log(`n: ${n} length: ${comments.length}`)
+                return comments.slice(comments.length - n)
+            })
     }
 
     static createHTML(comments) {
-        return Object.values(comments).map(comment => {
+        return comments.map(comment => {
             const date = comment.date
                 ? new Date(comment.date).toLocaleDateString() + ' | ' + new Date(comment.date).toLocaleTimeString()
                 : '5 seconds ago'
